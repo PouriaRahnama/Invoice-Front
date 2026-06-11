@@ -30,13 +30,7 @@
               [class.is-invalid]="productForm.get('name')?.invalid && productForm.get('name')?.touched"
             />
           </div>
-
-          <div
-            class="error-text"
-            *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched"
-          >
-            وارد کردن نام محصول حداقل با ۳ کاراکتر الزامی است.
-          </div>
+          <app-field-error [control]="productForm.get('name')" message="وارد کردن نام محصول حداقل با ۳ کاراکتر الزامی است."></app-field-error>
         </div>
 
         <div class="row">
@@ -54,13 +48,7 @@
                   [class.is-invalid]="productForm.get('price')?.invalid && productForm.get('price')?.touched"
                 />
               </div>
-
-              <div
-                class="error-text"
-                *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched"
-              >
-                وارد کردن قیمت معتبر الزامی است.
-              </div>
+              <app-field-error [control]="productForm.get('price')" message=" وارد کردن قیمت معتبر الزامی است."></app-field-error>
             </div>
           </div>
 
@@ -78,13 +66,7 @@
                   [class.is-invalid]="productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched"
                 />
               </div>
-
-              <div
-                class="error-text"
-                *ngIf="productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched"
-              >
-                وارد کردن تعداد موجودی معتبر الزامی است.
-              </div>
+              <app-field-error [control]="productForm.get('quantity')" message="وارد کردن تعداد موجودی معتبر الزامی است."></app-field-error>
             </div>
           </div>
         </div>
