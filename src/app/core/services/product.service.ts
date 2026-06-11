@@ -21,9 +21,17 @@ export class ProductService {
       `${this.endpoint}/GetAll?Page=${page}&PageSize=${pageSize}&OrderBy=${orderBy}&Filter=${filter}`
       );
     }
-    
+
+    getByProductId(productId: string): Observable<ApiResponse<Product>> {
+      return this.api.get<ApiResponse<Product>>(`${this.endpoint}/GetById?id=${productId}`);
+    }
+
     createProduct(formData: FormData): Observable<ApiResponse<any>> {
-       return this.api.post<ApiResponse<any>>(`${this.endpoint}/Create`, formData);
+      return this.api.post<ApiResponse<any>>(`${this.endpoint}/Create`, formData);
+    }
+
+    UpdateProduct(formData: FormData): Observable<ApiResponse<any>> {
+      return this.api.post<ApiResponse<any>>(`${this.endpoint}/Update`, formData);
     }
 
 }
