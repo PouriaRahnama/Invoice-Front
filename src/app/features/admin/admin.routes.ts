@@ -20,6 +20,14 @@ export const AdminRoutes: Routes = [
   { 
     path: 'products/edit/:id',
     loadComponent: () => import('./pages/products/product-form/product-form.component').then(m => m.ProductFormComponent)
-  } ,
+  },
+  { 
+    path: 'customers',
+    loadComponent: () => import('./pages/customers/customer-list/customer-list.component').then(m => m.CustomerListComponent)
+  },
+  { 
+    path: 'invoices',
+    loadComponent: () => import('./pages/invoices/invoice-list/invoice-list.component').then(m => m.InvoiceListComponent)
+  },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
