@@ -1,0 +1,51 @@
+<div class="details-card">
+  <div class="details-header">
+    <div>
+      <h3>جزئیات کاربر</h3>
+      <p>اطلاعات کامل کاربر انتخاب‌شده</p>
+    </div>
+    <button
+      class="delete-btn"
+      [disabled]="!user()"
+      (click)="deleteUserDetails()">
+      🗑 حذف جزئیات
+    </button>
+  </div>
+
+  @if (loading()) {
+    <div class="details-loading">
+      <div class="spinner"></div>
+      <span>در حال دریافت اطلاعات کاربر...</span>
+    </div>
+  } @else if (user()) {
+    <div class="details-body">
+      <div class="info-grid">
+        <div class="info-item">
+          <label>شناسه کاربر</label>
+          <span>{{ user()?.userId }}</span>
+        </div>
+
+        <div class="info-item">
+          <label>نام کاربری</label>
+          <span>{{ user()?.username }}</span>
+        </div>
+
+        <div class="info-item">
+          <label>شماره تماس</label>
+          <span>{{ user()?.phone }}</span>
+        </div>
+
+        <div class="info-item">
+          <label>تاریخ ثبت</label>
+          <span>{{ user()?.createdDateTime  | persianDate}}</span>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="empty-details">
+      <span class="material-icons">person_search</span>
+      <h4>کاربری انتخاب نشده است</h4>
+      <p>برای مشاهده جزئیات، روی دکمه «جزئیات» یکی از کاربران کلیک کنید.</p>
+    </div>
+  }
+</div>

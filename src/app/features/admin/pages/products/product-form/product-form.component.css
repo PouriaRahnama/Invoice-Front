@@ -1,0 +1,301 @@
+.product-form-page {
+  max-width: 1050px;
+}
+
+/* بدنه اصلی */
+.form-shell {
+  background: #f8fbfd;
+  border-radius: 28px;
+  padding: 28px;
+}
+
+/* سربرگ بالا */
+.form-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 26px;
+}
+
+.form-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  color: #1f2937;
+}
+
+.form-subtitle {
+  margin: 8px 0 0;
+  color: #7b8794;
+  font-size: 14px;
+}
+
+/* دکمه برگشت */
+.btn-back {
+  text-decoration: none;
+  border: 1px solid #b7d9f7;
+  color: #2585c7;
+  background: #eef8ff;
+  padding: 11px 20px;
+  border-radius: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background: #dff1ff;
+  color: #176fa8;
+}
+
+/* کارت فرم */
+.form-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 34px;
+  box-shadow: 0 18px 45px rgba(31, 41, 55, 0.06);
+  border: 1px solid #eef2f6;
+}
+
+/* label */
+.form-label-custom {
+  display: block;
+  margin-bottom: 10px;
+  color: #263238;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* input */
+.custom-input {
+  height: 54px;
+  border-radius: 16px;
+  border: 1px solid #dbe4ea;
+  background: #fbfdff;
+  padding: 0 18px;
+  color: #111827;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.custom-input::placeholder {
+  color: #a0aab6;
+}
+
+.custom-input:focus {
+  background: #ffffff;
+  border-color: #8cc8f3;
+  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.12);
+}
+
+/* error */
+.custom-input.is-invalid {
+  border-color: #ef4444;
+  background-image: none;
+}
+
+.error-text {
+  margin-top: 8px;
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* آپلود */
+.upload-box {
+  display: block;
+  width: 100%;
+  border: 1.5px dashed #b7d9f7;
+  background: #f6fbff;
+  border-radius: 20px;
+  padding: 22px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.upload-box:hover {
+  background: #eef8ff;
+  border-color: #75b9ed;
+}
+
+.upload-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.upload-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: #e3f2fd;
+  color: #2585c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+}
+
+.upload-content strong {
+  display: block;
+  color: #1f2937;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.upload-content span {
+  color: #7b8794;
+  font-size: 13px;
+}
+
+/* دکمه‌ها */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  gap: 14px;
+}
+
+.btn-light-custom {
+  background: #f4f7fa;
+  border: 1px solid #dce6ef;
+  color: #52616f;
+  padding: 12px 28px;
+  border-radius: 14px;
+  font-weight: 700;
+}
+
+.btn-light-custom:hover {
+  background: #eaf0f6;
+  color: #344054;
+}
+
+.btn-submit-custom {
+  background: #b9daf8;
+  color: #16324f;
+  border: none;
+  padding: 12px 34px;
+  border-radius: 14px;
+  font-weight: 800;
+  transition: all 0.2s ease;
+}
+
+.btn-submit-custom:hover {
+  background: #9bcaf2;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(37, 133, 199, 0.18);
+}
+
+/* موبایل */
+@media (max-width: 768px) {
+  .form-shell {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .form-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .form-card {
+    padding: 22px;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .btn-light-custom,
+  .btn-submit-custom {
+    width: 100%;
+  }
+}
+
+
+
+.image-upload-wrapper {
+  position: relative;
+}
+
+.image-preview-box {
+  position: absolute;
+  top: 12px;
+  left: 12px; /* اگر خواستی راست باشد، right: 12px بگذار */
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #dbe4ea;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.selected-file {
+  margin-top: 10px;
+  background: #eef8ff;
+  color: #2585c7;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.remove-image-btn {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.95);
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.remove-image-btn:hover {
+  background: #dc2626;
+}
+.loading-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spinner-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(22, 50, 79, 0.25);
+  border-top-color: #16324f;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.btn-submit-custom:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,32 @@
+<div class="layout">
+  <div class="sidebar" [class.closed]="!uiService.isSidebarOpen()">
+
+    <button class="toggle-btn" (click)="uiService.toggleSidebar()">☰</button>
+
+    <ul class="menu">
+
+      <li routerLinkActive="active">
+        <a routerLink="/admin/dashboard">
+          <span class="material-icons">dashboard</span>
+          <span *ngIf="uiService.isSidebarOpen()">داشبورد</span>
+        </a>
+      </li>
+
+      <li routerLinkActive="active">
+        <a routerLink="/admin/users">
+          <span class="material-icons">group</span>
+          <span *ngIf="uiService.isSidebarOpen()">کاربران</span>
+        </a>
+      </li>
+
+      <li routerLinkActive="active">
+        <a routerLink="/admin/products">
+          <span class="material-icons">inventory_2</span>
+          <span *ngIf="uiService.isSidebarOpen()">محصولات</span>
+        </a>
+      </li>
+
+    </ul>
+
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<div class="page-container">
+
+  <!-- بخش فیلترها -->
+  <form [formGroup]="searchForm" class="search-card">
+    <div class="filter-group"> 
+      <div class="filter-field">
+        <label>نام کاربری</label>
+        <div class="input-wrapper">
+          <span class="material-icons">search</span>
+          <input type="text" placeholder="جستجو نام کاربری..." formControlName="username" />
+        </div>
+      </div>
+
+      <div class="filter-field">
+        <label>شماره تماس</label>
+        <div class="input-wrapper">
+          <span class="material-icons">phone</span>
+          <input type="text" placeholder="جستجو شماره تماس..." formControlName="phone" />
+        </div>
+      </div>
+
+      <!-- تراز شده با اینپوت‌ها -->
+      <div class="filter-actions">
+        <button type="button" (click)="clearFilters()" class="clear-btn">
+          <span class="material-icons">filter_alt_off</span>
+          <span>پاک کردن فیلتر</span>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- بخش اصلی لیست کاربران -->
+  <div class="users-card">
+    <div class="card-header-modern">
+      <h2 class="title">لیست کاربران</h2>
+      <span class="total-badge">تعداد کل: {{ totalCount() }}</span>
+    </div>
+
+    <div class="card-body">
+      @if (loading()) {
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <span>در حال بارگذاری اطلاعات...</span>
+        </div>
+      } @else {
+        <div class="table-responsive">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>نام کاربری</th>
+                <th>شماره تماس</th>
+                <th>تاریخ ثبت</th>
+                <th>عملیات</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (user of users(); track user.userId) {
+                <tr>
+                  <td class="user-name-cell">{{ user.username }}</td>
+                  <td>{{ user.phone }}</td>
+                  <td class="date-cell">{{ user.createdDateTime | persianDate }}</td>
+                  <td class="action-cell">
+                    <button
+                      type="button"
+                      class="details-btn"
+                      (click)="setselectedUserId(user.userId)">
+                      <span class="details-icon">👁</span>
+                      <span>جزئیات</span>
+                    </button>
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="4" class="empty-state">
+                    <div class="empty-content">
+                      <span class="material-icons">info_outline</span>
+                      <p>کاربری با این مشخصات یافت نشد</p>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination-wrapper">
+          <app-pagination
+            [totalPages]="totalPages()"
+            [page]="page()"
+            [pageSize]="pageSize()"
+            [totalCount]="totalCount()"
+            (pageChange)="changePage($event)">
+          </app-pagination>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- نمایش جزئیات کاربر -->
+  @if (selectedUserId()) {
+    <div class="details-overlay">
+      <app-user-details 
+        [userId]="selectedUserId()" 
+        (deleteUserDetailUserId)="setNotselectedUserId($event)">
+      </app-user-details>
+    </div>
+  }
+
+</div>

@@ -1,0 +1,65 @@
+.layout {
+  display: flex;
+}
+
+.sidebar {
+  width: 230px;
+  height: 100vh;
+  background: #ffffff;
+  border-left: 1px solid #eff3f4;
+  transition: width 0.3s ease;
+  padding-top: 15px;
+}
+
+.sidebar.closed {
+  width: 70px;
+}
+
+.toggle-btn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  margin: 10px;
+  color: #536471;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.menu li {
+  margin: 6px 10px;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: #0f1419;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.menu a:hover {
+  background: #f0faff;
+}
+
+.menu li.active a {
+  background: #e8f5fd;
+  color: #1d9bf0;
+  font-weight: 600;
+}
+
+.material-icons {
+  font-size: 22px;
+  color: #536471;
+}
+
+.menu li.active .material-icons {
+  color: #1d9bf0;
+}

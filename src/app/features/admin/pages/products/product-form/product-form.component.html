@@ -1,0 +1,163 @@
+<div class="product-form-page container mt-5" dir="rtl">
+  <div class="form-shell">
+
+    <!-- Header -->
+    <div class="form-topbar">
+      <div>
+        <h4 class="form-title">افزودن محصول</h4>
+        <p class="form-subtitle">اطلاعات محصول جدید را وارد کنید</p>
+      </div>
+
+      <a routerLink="/admin/products" class="btn-back">
+        بازگشت به لیست
+      </a>
+    </div>
+
+    <!-- Form Card -->
+    <div class="form-card">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+        <!-- نام محصول -->
+        <div class="form-group-custom mb-4">
+          <label class="form-label-custom">نام محصول</label>
+
+          <div class="input-wrapper">
+            <input
+              type="text"
+              formControlName="name"
+              class="form-control custom-input"
+              placeholder="مثلاً لپ‌تاپ ایسوس"
+              [class.is-invalid]="productForm.get('name')?.invalid && productForm.get('name')?.touched"
+            />
+          </div>
+
+          <div
+            class="error-text"
+            *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched"
+          >
+            وارد کردن نام محصول حداقل با ۳ کاراکتر الزامی است.
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- قیمت -->
+          <div class="col-md-6 mb-4">
+            <div class="form-group-custom">
+              <label class="form-label-custom">قیمت</label>
+
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  formControlName="price"
+                  class="form-control custom-input"
+                  placeholder="مثلاً 250000"
+                  [class.is-invalid]="productForm.get('price')?.invalid && productForm.get('price')?.touched"
+                />
+              </div>
+
+              <div
+                class="error-text"
+                *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched"
+              >
+                وارد کردن قیمت معتبر الزامی است.
+              </div>
+            </div>
+          </div>
+
+          <!-- تعداد -->
+          <div class="col-md-6 mb-4">
+            <div class="form-group-custom">
+              <label class="form-label-custom">تعداد موجودی</label>
+
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  formControlName="quantity"
+                  class="form-control custom-input"
+                  placeholder="مثلاً 10"
+                  [class.is-invalid]="productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched"
+                />
+              </div>
+
+              <div
+                class="error-text"
+                *ngIf="productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched"
+              >
+                وارد کردن تعداد موجودی معتبر الزامی است.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- تصویر -->
+        <div class="form-group-custom mb-4">
+            <label class="form-label-custom">تصویر محصول</label>
+            <div class="image-upload-wrapper">
+                <label class="upload-box">
+                <input
+                    type="file"
+                    (change)="onFileSelected($event)"
+                    accept="image/*"
+                    hidden
+                />
+
+                <div class="upload-content">
+                    <div class="upload-icon">📷</div>
+                    <div>
+                    <strong>انتخاب تصویر محصول</strong>
+                    <span>فرمت‌های مجاز: JPG, PNG, WEBP</span>
+                    </div>
+                </div>
+                </label>
+
+                <!-- ✅ preview + remove -->
+                <div class="image-preview-box" *ngIf="imagePreview">
+                <img
+                    [src]="imagePreview"
+                    alt="پیش‌نمایش تصویر"
+                    class="image-preview"
+                />
+
+                <button
+                    type="button"
+                    class="remove-image-btn"
+                    (click)="removeSelectedImage()"
+                    aria-label="حذف تصویر"
+                >
+                    ×
+                </button>
+                </div>
+            </div>
+
+            <div class="selected-file" *ngIf="selectedFileName">
+                فایل انتخاب‌شده: {{ selectedFileName }}
+            </div>
+        </div>
+
+
+
+        <!-- Actions -->
+        <div class="form-actions">
+          <a routerLink="/admin/products" class="btn btn-light-custom">
+            انصراف
+          </a>
+
+          <button
+            type="submit"
+            class="btn btn-submit-custom"
+            [disabled]="isSubmitting"
+          >
+           <span *ngIf="!isSubmitting">تایید و ثبت محصول</span>
+
+          <span *ngIf="isSubmitting" class="loading-content">
+            <span class="spinner-custom"></span>
+            در حال ثبت...
+          </span>
+         </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

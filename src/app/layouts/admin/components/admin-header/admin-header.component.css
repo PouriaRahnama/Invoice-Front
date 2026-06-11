@@ -1,0 +1,34 @@
+.admin-header {
+  height: 64px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eff3f4;
+  box-shadow: none;
+  direction: rtl;
+}
+
+.admin-title {
+  color: #0f1419;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.admin-user {
+  color: #0f1419;
+  font-weight: 500;
+}
+
+.logout-btn {
+  color: #1d9bf0;
+  border: 1px solid #1d9bf0;
+  border-radius: 9999px;
+  padding: 5px 16px;
+  font-weight: 600;
+  background-color: transparent;
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  color: #ffffff;
+  background-color: #1d9bf0;
+  border-color: #1d9bf0;
+}

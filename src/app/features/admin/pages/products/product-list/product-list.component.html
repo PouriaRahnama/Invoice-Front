@@ -1,0 +1,136 @@
+<div class="page-container">
+
+    <a routerLink="/admin/products/create" class="create-btn text-decoration-none">
+         <span>افزودن محصول </span>
+    </a>
+  <!-- بخش فیلترها -->
+  <form [formGroup]="searchForm" class="search-card">
+    <div class="filter-group"> 
+      <div class="filter-field">
+        <label>نام محصول</label>
+        <div class="input-wrapper">
+          <span class="material-icons">search</span>
+          <input type="text" placeholder="جستجو نام محصول..." formControlName="name" />
+        </div>
+      </div>
+
+      <div class="filter-field">
+        <label>کد محصول</label>
+        <div class="input-wrapper">
+          <span class="material-icons">search</span>
+          <input type="text" placeholder="جستجو کد محصول ..." formControlName="code" />
+        </div>
+      </div>
+
+      <div class="filter-actions">
+        <button type="button" (click)="clearFilters()" class="clear-btn">
+          <span class="material-icons">filter_alt_off</span>
+          <span>پاک کردن فیلتر</span>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- بخش اصلی لیست محصولات -->
+  <div class="users-card">
+    <div class="card-header-modern">
+      <h2 class="title">لیست محصولات</h2>
+      <span class="total-badge">تعداد کل: {{ totalCount() }}</span>
+    </div>
+
+    <div class="card-body">
+      @if (loading()) {
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <span>در حال بارگذاری اطلاعات...</span>
+        </div>
+      } @else {
+        <div class="table-responsive">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>نام محصول</th>
+                <th>کد محصول</th>
+                <th>قیمت </th>
+                <th>موجودی </th>
+                <th>عکس </th>
+                <th>تاریخ ثبت</th>
+                <th>عملیات</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (product of products(); track product.productId) {
+                <tr>
+                  <td class="user-name-cell">{{ product.name }}</td>
+                  <td>{{ product.code }}</td>
+                  <td>{{ product.price | separateAmount }}</td> 
+                  <td>{{ product.quantity }}</td>
+                  <td class="image-cell">
+                    @if (product.imagePath) {
+                        <img [src]="baseUrl + product.imagePath" 
+                             [alt]="product.name" 
+                             class="product-thumbnail">
+                    } @else {
+                        <img src="images/no-image.png" alt="no image" class="product-thumbnail">
+                    }
+                  </td>
+                  <td class="date-cell">{{ product.createdDateTime | persianDate }}</td>
+                  <td class="action-cell">
+                    <button type="button" class="details-btn" (click)="openDetails(product)">
+                        <span class="details-icon">👁</span>
+                        <span>جزئیات</span>
+                    </button>
+                     <a [routerLink]="['/admin/products/edit', product.productId]" class="edit-btn text-decoration-none">
+                        <span>ویرایش</span>
+                     </a>
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="7" class="empty-state">
+                    <div class="empty-content">
+                      <span class="material-icons">info_outline</span>
+                      <p>محصولی با این مشخصات یافت نشد</p>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination-wrapper">
+          <app-pagination
+            [totalPages]="totalPages()"
+            [page]="page()"
+            [pageSize]="pageSize()"
+            [totalCount]="totalCount()"
+            (pageChange)="changePage($event)">
+          </app-pagination>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+<!-- استفاده از کامپوننت مودال -->
+<app-modal 
+  [isOpen]="!!selectedProduct" 
+  [title]="'جزئیات محصول: ' + selectedProduct?.name"
+  (close)="closeModal()">
+
+  <!-- هر چه اینجا بنویسید در بخش بدنه مودال نمایش داده می‌شود -->
+  @if (selectedProduct) {
+    <div class="product-details-grid">
+      <div class="detail-item"><strong>کد:</strong> {{selectedProduct.code}}</div>
+      <div class="detail-item"><strong>قیمت:</strong> {{selectedProduct.price | separateAmount}}</div>
+      <div class="detail-item"><strong>موجودی:</strong> {{selectedProduct.quantity}}</div>
+      <div class="detail-item"><strong>تاریخ ثبت:</strong> {{selectedProduct.createdDateTime | persianDate}}</div>
+
+      <div class="text-center mt-3">
+        <img [src]="selectedProduct.imagePath ? baseUrl + selectedProduct.imagePath : 'images/no-image.png'" 
+             class="img-fluid rounded" style="max-height: 200px;">
+      </div>
+    </div>
+  }
+
+</app-modal>

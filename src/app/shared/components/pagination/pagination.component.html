@@ -1,0 +1,26 @@
+@if (totalPages() > 1) {
+  <div class="pagination">
+    <button
+      type="button"
+      (click)="goToPage(page() - 1)"
+      [disabled]="page() === 1">
+      قبلی
+    </button>
+
+    @for (item of pages(); track item) {
+      <button
+        type="button"
+        (click)="goToPage(item)"
+        [class.active]="item === page()">
+        {{ item }}
+      </button>
+    }
+
+    <button
+      type="button"
+      (click)="goToPage(page() + 1)"
+      [disabled]="page() === totalPages()">
+      بعدی
+    </button>
+  </div>
+}
