@@ -1,0 +1,65 @@
+.dashboard-container {
+  padding: 24px;
+}
+
+.dashboard-title {
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #222;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.dashboard-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  border: 1px solid #eee;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.14);
+}
+
+.card-image {
+  height: 140px;
+  background: #f5f7fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image img {
+  max-width: 90px;
+  max-height: 90px;
+  object-fit: contain;
+}
+
+.card-content {
+  padding: 18px;
+  text-align: center;
+}
+
+.card-content h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+
+.card-content p {
+  margin: 0;
+  font-size: 14px;
+  color: #777;
+}
