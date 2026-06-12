@@ -1,6 +1,6 @@
 /* حل مشکل اسکرول با کسر ارتفاع هدر (فرض بر اینکه هدر شما حدود 72 پیکسل است) */
 .login-wrapper {
-  min-height: calc(100vh - 150px); 
+  min-height: calc(100vh - 145px); 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,6 +19,9 @@
   font-size: 15px;
 }
 
+.bg-none{
+  background-image: none;
+}
 .btn-lg {
   padding: 12px;
   border-radius: 12px;
@@ -37,6 +40,8 @@
   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
   border: 1px solid #0d6efd !important;
 }
+
+
 
 /* ریسپانسیو برای موبایل */
 @media (max-width: 768px) {

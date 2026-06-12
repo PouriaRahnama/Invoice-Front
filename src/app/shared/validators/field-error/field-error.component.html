@@ -2,5 +2,5 @@
   <span *ngIf="control.errors?.['required']">{{ message }}</span>
   <span *ngIf="control.errors?.['min']">{{ message }}</span>
   <span *ngIf="control.errors?.['minlength']">{{ message }}</span>
-  
+    <span *ngIf="control.errors?.['pattern']">{{ message }}</span>
 </div>

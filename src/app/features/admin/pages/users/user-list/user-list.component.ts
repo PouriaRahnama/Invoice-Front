@@ -25,7 +25,7 @@ export class UserListComponent implements OnInit {
   totalCount = signal(0);
   totalPages = signal(0);
   page = signal(1);
-  pageSize = signal(1);
+  pageSize = signal(4);
   selectedUserId = signal<string | null>(null);
 
   setselectedUserId(userId:string):void{

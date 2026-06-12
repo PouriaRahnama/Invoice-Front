@@ -1,41 +1,89 @@
 <div class="login-wrapper d-flex align-items-center justify-content-center bg-light px-3">
   <div class="row shadow-lg rounded-4 overflow-hidden bg-white login-card">
-    
-    <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center bg-primary text-white p-5 order-md-2">
+
+    <div
+      class="col-md-6 d-none d-md-flex align-items-center justify-content-center bg-primary text-white p-5 order-md-2"
+    >
       <div class="text-center">
         <h2 class="fw-bold mb-4">خوش آمدید!</h2>
-        <p class="opacity-75">به خانواده بزرگ ما بپیوندید و از خدمات ویژه لذت ببرید.</p>
+        <p class="opacity-75">
+          به خانواده بزرگ ما بپیوندید و از خدمات ویژه لذت ببرید.
+        </p>
         <i class="bi bi-person-workspace mt-3" style="font-size: 5rem;"></i>
       </div>
     </div>
 
     <div class="col-md-6 p-4 p-lg-5 d-flex flex-column justify-content-center order-md-1">
       <div class="text-center text-md-end">
-         <h3 class="mb-4 fw-bold">ایجاد حساب کاربری</h3>
+        <h3 class="mb-4 fw-bold">ایجاد حساب کاربری</h3>
       </div>
-      
-      <form>
-        <div class="mb-3">
-          <label class="form-label text-muted small">ایمیل یا نام کاربری</label>
-          <input type="email" class="form-control form-control-lg bg-light border-0" placeholder="example@mail.com">
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <!-- Username -->
+        <div class="mb-2">
+          <label class="form-label text-muted small">نام کاربری</label>
+
+          <input
+            type="text"
+            class="form-control form-control-lg bg-light bg-none"
+            placeholder="نام کاربری خود را وارد کنید"
+            formControlName="username"
+            [class.is-invalid]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched"
+          />
+
+          <app-field-error [control]="registerForm.get('username')" message="نام کاربری کمتر از سه حرف نمی تواند باشد!"></app-field-error>
+
         </div>
 
-        <div class="mb-4">
-          <label class="form-label text-muted small">شماره تلفن </label>
-          <input type="number" class="form-control form-control-lg bg-light border-0" placeholder="09132454980">
+        <!-- Phone -->
+        <div class="mb-2">
+          <label class="form-label text-muted small">شماره تلفن</label>
+
+          <input
+            type="tel"
+            class="form-control form-control-lg bg-light bg-none"
+            placeholder="09123456789"
+            formControlName="phone"
+            [class.is-invalid]="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched"
+          />
+
+          <app-field-error [control]="registerForm.get('phone')" message="شماره تلفن معتبر نمی باشد!"></app-field-error>
         </div>
-        
-        <div class="mb-4">
+
+        <!-- Password -->
+        <div class="mb-2">
           <label class="form-label text-muted small">رمز عبور</label>
-          <input type="password" class="form-control form-control-lg bg-light border-0" placeholder="••••••••">
+
+          <input
+            type="password"
+            class="form-control form-control-lg bg-light bg-none"
+            placeholder="••••••••"
+            formControlName="password"
+            [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+          />
+
+           <app-field-error [control]="registerForm.get('password')" message="رمز عبور نمی تواند کمتر از 6 رقم باشد!"></app-field-error>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold mb-3 shadow-sm">ورود</button>
-        
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="btn btn-primary btn-lg w-100 fw-bold mb-3 shadow-sm"
+          [disabled]="isSubmitting"
+        >
+          <span *ngIf="!isSubmitting">ثبت‌نام</span>
+          <span *ngIf="isSubmitting">در حال ثبت‌نام...</span>
+        </button>
+
+        <!-- Login link -->
         <div class="text-center">
           <span class="text-muted small">حساب کاربری دارید؟</span>
-          <a routerLink="/login" class="text-primary text-decoration-none fw-bold small"> ورود کنید</a>
+          <a routerLink="/login" class="text-primary text-decoration-none fw-bold small">
+            ورود کنید
+          </a>
         </div>
+
       </form>
     </div>
 
