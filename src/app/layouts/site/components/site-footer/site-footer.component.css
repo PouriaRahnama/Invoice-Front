@@ -1,0 +1,24 @@
+.simple-footer {
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  color: #0d6efd !important;
+}
+
+.social-icons a {
+  transition: color 0.2s;
+}
+
+.social-icons a:hover {
+  color: #0d6efd !important;
+}
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* باعث می‌شود کل ارتفاع مرورگر پوشش داده شود */
+}
+
+.content-area {
+  flex: 1; /* این بخش تمام فضای خالی بین هدر و فوتر را پر می‌کند */
+}
