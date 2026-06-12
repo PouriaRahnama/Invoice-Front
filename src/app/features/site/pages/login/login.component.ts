@@ -5,10 +5,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../../../core/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
+import { FieldErrorComponent } from "../../../../shared/validators/field-error/field-error.component";
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, CommonModule,ReactiveFormsModule],
+  imports: [RouterLink, CommonModule, ReactiveFormsModule, FieldErrorComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
