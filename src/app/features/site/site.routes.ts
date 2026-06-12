@@ -15,6 +15,16 @@ export const SiteRoutes: Routes = [
     path: 'login',
     loadComponent: () =>
       import('./pages/login/login.component').then((m) => m.LoginComponent),
+  }, 
+  {
+    path: 'products',
+    loadComponent: () =>
+      import('./pages/products/products.component').then((m) => m.ProductsComponent),
+  },
+  {
+    path: 'about',
+    loadComponent: () =>
+      import('./pages/about-us/about-us.component').then((m) => m.AboutUsComponent),
   },
   { path: '', redirectTo: '', pathMatch: 'full' }
 ];
