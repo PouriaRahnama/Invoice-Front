@@ -128,7 +128,7 @@ export class ProductFormComponent implements OnInit {
           this.router.navigate(['/admin/products']);
         },
         error: (err) => {
-           const message = err?.error?.message || 'خطایی در ایجاد محصول رخ داده است.';
+           const message = err?.error?.message || 'خطایی رخ داده است.';
            this.toastr.error(message, 'خطا');
         }
       });  

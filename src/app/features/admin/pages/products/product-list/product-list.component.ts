@@ -20,6 +20,14 @@ export class ProductListComponent implements OnInit {
   
   searchForm!: FormGroup;
   baseUrl!: string;
+
+  products = signal<Product[]>([]);
+  loading = signal(false);
+  totalCount = signal(0);
+  totalPages = signal(0);
+  page = signal(1);
+  pageSize = signal(5);
+  selectedProduct: Product | null = null;
   
   constructor(
     private fb: FormBuilder,
@@ -42,15 +50,7 @@ export class ProductListComponent implements OnInit {
       this.loadProducts();
     });
   }
-
-
-  products = signal<Product[]>([]);
-  loading = signal(false);
-  totalCount = signal(0);
-  totalPages = signal(0);
-  page = signal(1);
-  pageSize = signal(5);
-
+  
   loadProducts(): void {
     this.loading.set(true);
 
@@ -92,17 +92,10 @@ export class ProductListComponent implements OnInit {
     this.searchForm.reset();
   }
 
-
-
-    // ۱. یک متغیر برای نگه داشتن محصول انتخاب شده
-  selectedProduct: Product | null = null;
-
-  // ۲. متدی برای باز کردن مودال
   openDetails(product: Product) {
     this.selectedProduct = product;
   }
 
-  // ۳. متدی برای بستن مودال
   closeModal() {
     this.selectedProduct = null;
   }
