@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { EMPTY, map, Observable, ReplaySubject, tap } from 'rxjs';
+import { BehaviorSubject, EMPTY, map, Observable, ReplaySubject, tap } from 'rxjs';
 import { ApiResponse } from '../models/api-response.model';
 import { register } from '../models/register.model';
 import { login } from '../models/login.model';
@@ -20,8 +20,12 @@ export class AuthService {
   private readonly refreshTokenKey = 'refreshToken';
   private readonly accessTokenExpiresKey = 'accessTokenExpires';
 
-  private currentUserSource = new ReplaySubject<User | null>(1);
+  private currentUserSource = new BehaviorSubject<User | null>(null);;
   currentUser$ = this.currentUserSource.asObservable();
+
+  get currentUserValue() {
+    return this.currentUserSource.value;
+  } 
 
   register(register: register): Observable<ApiResponse<boolean>> {
     return this.api.post<ApiResponse<boolean>>(`${this.endpoint}/Register`, register);
@@ -72,11 +76,11 @@ export class AuthService {
       return this.getCurrentUser().pipe(
         tap((response) => {
           if (response.success) {
-            this.currentUserSource.next(response.data);
+            this.setCurrentUser(response.data);
           } else {
-          this.currentUserSource.next(null);
-        }
-        })
+            this.setCurrentUser(null);
+          }
+        }),
       );
     }
     else{
