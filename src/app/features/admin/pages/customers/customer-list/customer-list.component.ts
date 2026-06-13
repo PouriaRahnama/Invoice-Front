@@ -2,7 +2,6 @@ import { Component, signal } from '@angular/core';
 import { PaginationComponent } from '../../../../../shared/components/pagination/pagination.component';
 import { JalaliDatePipe } from '../../../../../shared/pipes/jalali-date.pipe';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { SeparateAmountPipe } from '../../../../../shared/pipes/separate-amount.pipe';
 import { ModalComponent } from '../../../../../shared/components/modal/modal.component';
 import { RouterLink } from '@angular/router';
 import { Customer } from '../../../../../core/models/customer.model';
@@ -13,7 +12,7 @@ import { debounceTime, finalize } from 'rxjs';
 @Component({
   selector: 'app-customer-list',
   standalone: true,
-  imports: [PaginationComponent, JalaliDatePipe, ReactiveFormsModule, SeparateAmountPipe, ModalComponent,RouterLink],
+  imports: [PaginationComponent, JalaliDatePipe, ReactiveFormsModule, ModalComponent,RouterLink],
   templateUrl: './customer-list.component.html',
   styleUrl: './customer-list.component.css'
 })

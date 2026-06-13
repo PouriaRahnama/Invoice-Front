@@ -1,6 +1,6 @@
 <div class="page-container">
 
-    <a routerLink="/admin/products/create" class="create-btn text-decoration-none">
+    <a routerLink="/admin/customers/create" class="create-btn text-decoration-none">
          <span>افزودن مشتری </span>
     </a>
   <!-- بخش فیلترها -->
@@ -32,10 +32,10 @@
     </div>
   </form>
 
-  <!-- بخش اصلی لیست محصولات -->
+
   <div class="users-card">
     <div class="card-header-modern">
-      <h2 class="title">لیست محصولات</h2>
+      <h2 class="title">لیست  مشتریان</h2>
       <span class="total-badge">تعداد کل: {{ totalCount() }}</span>
     </div>
 
@@ -73,7 +73,7 @@
                         <span class="details-icon">👁</span>
                         <span>جزئیات</span>
                     </button>
-                     <a [routerLink]="['/admin/products/edit', customer.customerId]" class="edit-btn text-decoration-none">
+                     <a [routerLink]="['/admin/customers/edit', customer.customerId]" class="edit-btn text-decoration-none">
                         <span>ویرایش</span>
                      </a>
                   </td>
