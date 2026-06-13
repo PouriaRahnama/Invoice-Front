@@ -25,6 +25,14 @@ export const AdminRoutes: Routes = [
     path: 'customers',
     loadComponent: () => import('./pages/customers/customer-list/customer-list.component').then(m => m.CustomerListComponent)
   },
+   { 
+    path: 'customers/create',
+    loadComponent: () => import('./pages/customers/customer-form/customer-form.component').then(m => m.CustomerFormComponent)
+  },
+   { 
+    path: 'customers/edit/:customerId',
+   loadComponent: () => import('./pages/customers/customer-form/customer-form.component').then(m => m.CustomerFormComponent)
+  },
   { 
     path: 'invoices',
     loadComponent: () => import('./pages/invoices/invoice-list/invoice-list.component').then(m => m.InvoiceListComponent)

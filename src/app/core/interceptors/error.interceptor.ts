@@ -29,7 +29,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             break;
 
           case 401:
-                this.toastr.warning('جلسه کاری شما به پایان رسیده است. لطفا مجدد وارد شوید.', 'عدم دسترسی');
+                this.toastr.warning(errorData?.message, 'عدم دسترسی');
             break;
 
           case 404:
@@ -37,11 +37,11 @@ export class ErrorInterceptor implements HttpInterceptor {
             break;
 
           case 500:
-                this.toastr.error('خطایی در سمت سرور رخ داده است. لطفاً بعداً تلاش کنید.', 'خطای سرور');
+                this.toastr.error(errorData?.message, 'خطای سرور');
             break;
 
           default:
-                this.toastr.error('خطای غیرمنتظره‌ای رخ داد.', 'خطا');
+                this.toastr.error('خطایی رخ داده است.', 'خطا');
             break;
         }
 

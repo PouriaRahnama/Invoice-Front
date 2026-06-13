@@ -73,8 +73,6 @@ export class ProductFormComponent implements OnInit {
           this.imagePreview = this.apiService.baseUrlForImages + this.currentImageUrl;
         },
         error: (err) => {
-          const message = err?.error?.message || 'خطا در بارگذاری اطلاعات محصول.';
-          this.toastr.error(message, 'خطا');
           this.router.navigate(['/admin/products']);
         }
       });
@@ -128,8 +126,6 @@ export class ProductFormComponent implements OnInit {
           this.router.navigate(['/admin/products']);
         },
         error: (err) => {
-           const message = err?.error?.message || 'خطایی رخ داده است.';
-           this.toastr.error(message, 'خطا');
         }
       });  
 
