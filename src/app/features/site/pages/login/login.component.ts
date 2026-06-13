@@ -23,16 +23,14 @@ export class LoginComponent {
       private router: Router,   
       private toastr: ToastrService) {}
   
-    ngOnInit(): void {
+  ngOnInit(): void {
       this.loginForm = this.fb.group({
         username: ['', [Validators.required, Validators.minLength(3)]],
         password: ['', [Validators.required, Validators.minLength(6)]]
       });
-    }
-
+  }
 
   onSubmit(): void {
-
   if (this.loginForm.invalid) {
     this.loginForm.markAllAsTouched();
     return;

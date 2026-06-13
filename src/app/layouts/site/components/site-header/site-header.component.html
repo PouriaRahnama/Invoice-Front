@@ -12,24 +12,63 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
+
       <!-- منوهای اصلی -->
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link custom-nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">صفحه اصلی</a>
+          <a class="nav-link custom-nav-link" routerLink="/" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}">
+            صفحه اصلی
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link custom-nav-link" routerLink="/products" routerLinkActive="active">محصولات</a>
+          <a class="nav-link custom-nav-link" routerLink="/products" routerLinkActive="active">
+            محصولات
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link custom-nav-link" routerLink="/about" routerLinkActive="active">درباره ما</a>
+          <a class="nav-link custom-nav-link" routerLink="/about" routerLinkActive="active">
+            درباره ما
+          </a>
         </li>
       </ul>
 
-      <!-- دکمه‌های ورود و ثبت‌نام (ms-auto این‌ها را به سمت چپ می‌راند) -->
-      <div class="d-flex align-items-center gap-2 me-auto mt-3 mt-lg-0">
-        <a routerLink="/login" class="btn btn-link text-decoration-none btn-login">ورود</a>
-        <a routerLink="/register" class="btn btn-primary btn-register px-4">ثبت‌نام</a>
-      </div>
+      <!-- بخش کاربر -->
+      <ng-container *ngIf="currentUser$ | async as user; else loggedOut">
+
+        <div class="d-flex align-items-center gap-3 me-auto mt-3 mt-lg-0">
+
+          <span class="fw-semibold">
+            {{ user.username }}
+          </span>
+           <span class="fw-semibold">
+            {{ user.phone }}
+          </span>
+          <span class="fw-semibold">
+            {{ user.userId }}
+          </span>
+
+          <button class="btn btn-outline-danger btn-sm" (click)="logout()">
+            خروج
+          </button>
+
+        </div>
+
+      </ng-container>
+
+      <ng-template #loggedOut>
+        <div class="d-flex align-items-center gap-2 me-auto mt-3 mt-lg-0">
+          <a routerLink="/login" class="btn btn-link text-decoration-none btn-login">
+            ورود
+          </a>
+          <a routerLink="/register" class="btn btn-primary btn-register px-4">
+            ثبت‌نام
+          </a>
+        </div>
+      </ng-template>
+
     </div>
   </div>
 </nav>
