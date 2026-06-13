@@ -1,1 +1,125 @@
-<p>customer-list works!</p>
+<div class="page-container">
+
+    <a routerLink="/admin/products/create" class="create-btn text-decoration-none">
+         <span>افزودن مشتری </span>
+    </a>
+  <!-- بخش فیلترها -->
+  <form [formGroup]="searchForm" class="search-card">
+    <div class="filter-group"> 
+      <div class="filter-field">
+        <label>نام کامل</label>
+        <div class="input-wrapper">
+          <span class="material-icons">search</span>
+          <input type="text" placeholder="جستجو نام کامل..." formControlName="fullName" />
+        </div>
+      </div>
+
+      <div class="filter-field">
+        <label>شماره تلفن </label>
+        <div class="input-wrapper">
+          <span class="material-icons">search</span>
+          <input type="text" placeholder="جستجو شماره تلفن  ..." formControlName="phone" />
+        </div>
+      </div>
+
+
+      <div class="filter-actions">
+        <button type="button" (click)="clearFilters()" class="clear-btn">
+          <span class="material-icons">filter_alt_off</span>
+          <span>پاک کردن فیلتر</span>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- بخش اصلی لیست محصولات -->
+  <div class="users-card">
+    <div class="card-header-modern">
+      <h2 class="title">لیست محصولات</h2>
+      <span class="total-badge">تعداد کل: {{ totalCount() }}</span>
+    </div>
+
+    <div class="card-body">
+      @if (loading()) {
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <span>در حال بارگذاری اطلاعات...</span>
+        </div>
+      } @else {
+        <div class="table-responsive">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th> شناسه مشتری</th>
+                <th> شناسه کاربر</th>
+                <th> نام کامل</th>
+                <th> شماره تلفن </th>
+                <th>آدرس </th>
+                <th>تاریخ ثبت</th>
+                <th>عملیات</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (customer of Customers(); track customer.customerId) {
+                <tr>
+                  <td class="user-name-cell">{{ customer.customerId }}</td>
+                  <td>{{ customer.userId }}</td>
+                  <td>{{ customer.fullName }}</td> 
+                  <td>{{ customer.phone }}</td> 
+                  <td>{{ customer.address }}</td>
+                  <td class="date-cell">{{ customer.createdDateTime | persianDate }}</td>
+                  <td class="action-cell">
+                    <button type="button" class="details-btn" (click)="openDetails(customer)">
+                        <span class="details-icon">👁</span>
+                        <span>جزئیات</span>
+                    </button>
+                     <a [routerLink]="['/admin/products/edit', customer.customerId]" class="edit-btn text-decoration-none">
+                        <span>ویرایش</span>
+                     </a>
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="7" class="empty-state">
+                    <div class="empty-content">
+                      <span class="material-icons">info_outline</span>
+                      <p>مشتری با این مشخصات یافت نشد</p>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination-wrapper">
+          <app-pagination
+            [totalPages]="totalPages()"
+            [page]="page()"
+            [pageSize]="pageSize()"
+            [totalCount]="totalCount()"
+            (pageChange)="changePage($event)">
+          </app-pagination>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+<!-- استفاده از کامپوننت مودال -->
+<app-modal 
+  [isOpen]="!!selectedCustomer" 
+  [title]="'جزئیات مشتری: ' + selectedCustomer?.fullName"
+  (close)="closeModal()">
+
+  <!-- هر چه اینجا بنویسید در بخش بدنه مودال نمایش داده می‌شود -->
+  @if (selectedCustomer) {
+    <div class="product-details-grid">
+      <div class="detail-item"><strong>شناسه مشتری:</strong> {{selectedCustomer.customerId}}</div>
+      <div class="detail-item"><strong>شناسه کاربر:</strong> {{selectedCustomer.userId }}</div>
+      <div class="detail-item"><strong>نام کامل:</strong> {{selectedCustomer.fullName}}</div>
+      <div class="detail-item"><strong> آدرس:</strong> {{selectedCustomer.address}}</div>
+        <div class="detail-item"><strong>تاریخ ثبت:</strong> {{selectedCustomer.createdDateTime | persianDate}}</div>
+    </div>
+  }
+
+</app-modal>
