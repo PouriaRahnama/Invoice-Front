@@ -1,0 +1,96 @@
+<div class="product-form-page container mt-5" dir="rtl">
+  <div class="form-shell">
+
+    <!-- Header -->
+    <div class="form-topbar">
+      <div>
+        <h4 class="form-title">افزودن مشتری</h4>
+        <p class="form-subtitle">اطلاعات مشتری جدید را وارد کنید</p>
+      </div>
+
+      <a routerLink="/admin/customers" class="btn-back">
+        بازگشت به لیست
+      </a>
+    </div>
+
+    <!-- Form Card -->
+    <div class="form-card">
+      <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group-custom mb-4">
+          <label class="form-label-custom">نام کامل مشتری</label>
+
+          <div class="input-wrapper">
+            <input
+              type="text"
+              formControlName="fullname"
+              class="form-control custom-input"
+              placeholder="مثلاً شرکت یا شخص"
+              [class.is-invalid]="customerForm.get('fullname')?.invalid && customerForm.get('fullname')?.touched"
+            />
+          </div>
+          <app-field-error [control]="customerForm.get('fullname')" message="وارد کردن نام مشتری حداقل با ۳ کاراکتر الزامی است."></app-field-error>
+        </div>
+    
+
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="form-group-custom">
+              <label class="form-label-custom">شماره تماس</label>
+
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  formControlName="phone"
+                  class="form-control custom-input"
+                  placeholder="مثلاً 09132224460"
+                  [class.is-invalid]="customerForm.get('phone')?.invalid && customerForm.get('phone')?.touched"
+                />
+              </div>
+              <app-field-error [control]="customerForm.get('phone')" message=" وارد کردن شماره تلفن معتبر الزامی است."></app-field-error>
+            </div>
+          </div>
+
+        <div class="col-md-6 mb-4">
+          <div class="form-group-custom">
+            <label class="form-label-custom" for="customerAddress">آدرس</label>
+
+            <div class="input-wrapper">
+              <textarea
+                id="customerAddress"
+                formControlName="address"
+                class="form-control  custom-textarea"
+                placeholder="مثلاً تهران، خیابان ..."
+                rows="5"
+                cols="5"
+              ></textarea>
+            </div>
+
+          </div>
+        </div>
+        <!-- Actions -->
+        <div class="form-actions">
+          <a routerLink="/admin/customers" class="btn btn-light-custom">
+            انصراف
+          </a>
+
+          <button
+            type="submit"
+            class="btn btn-submit-custom"
+            [disabled]="isSubmitting"
+          >
+           <span *ngIf="!isSubmitting">تایید و ثبت مشتری</span>
+
+          <span *ngIf="isSubmitting" class="loading-content">
+            <span class="spinner-custom"></span>
+            در حال ثبت...
+          </span>
+         </button>
+        </div>
+      </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>
